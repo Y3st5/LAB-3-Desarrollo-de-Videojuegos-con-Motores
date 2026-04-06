@@ -45,14 +45,23 @@ public class Enemy : MonoBehaviour
         transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("¡Enemigo alcanzó al jugador y se destruyó!");
             Destroy(gameObject);
         }
-    }*/
+        else if (other.CompareTag("Bullet"))
+        {
+            life -= 25f; // Reduce la vida del enemigo al ser golpeado por una bala
+            if (life <= 0)
+            {
+                Debug.Log("¡Enemigo destruido!");
+                Destroy(gameObject);
+            }
+        }
+    }
 
     private void OnDrawGizmosSelected()
     {

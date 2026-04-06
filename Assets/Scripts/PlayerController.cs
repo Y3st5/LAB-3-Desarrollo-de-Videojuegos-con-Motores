@@ -1,14 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Sirenix.OdinInspector;
+
 public class PlayerController : MonoBehaviour
 {
     public InputSystem_Actions inputs;
     private CharacterController controller;
 
-
-
+    [SerializeField] private Pistol pistol; // Referencia al script de la pistola
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 200f;
     [SerializeField] private float jumpForce = 10f;
@@ -22,43 +21,47 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Vector2 moveInput;
 
-
-
-
     private void Awake()
     {
         inputs = new();
         controller = GetComponent<CharacterController>();
+
+        pistol = GetComponentInChildren<Pistol>();
+
         defaultMoveSpeed = moveSpeed;
     }
+
     private void OnEnable()
     {
         inputs.Enable();
 
+        // Movimiento
         inputs.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         inputs.Player.Move.canceled += ctx => moveInput = Vector2.zero;
 
-
+        // Salto
         inputs.Player.Jump.performed += OnJump;
 
-        inputs.Player.DashSprint.performed += ctx => {
+        // Dash
+        inputs.Player.DashSprint.performed += ctx =>
+        {
             OnDash(ctx);
             moveSpeed = defaultMoveSpeed * 2f;
         };
+        inputs.Player.DashSprint.canceled += ctx => moveSpeed = defaultMoveSpeed;
 
-        inputs.Player.DashSprint.canceled += ctx => {
-            moveSpeed = defaultMoveSpeed;
-        };
+        // Disparo (Attack)
+        inputs.Player.Attack.performed += ctx => OnShoot();
     }
-    void Start()
+
+    private void OnDisable()
     {
-
+        inputs.Disable();
     }
+
     void Update()
     {
-
         OnMove();
-        //OnSimpleMove();
     }
 
     public void OnMove()
@@ -71,22 +74,16 @@ public class PlayerController : MonoBehaviour
         if (controller.isGrounded && verticalVelocity < 0)
             verticalVelocity = -2f;
 
-
         moveDir.y = verticalVelocity;
 
         if (isDashing)
         {
-            //->convertir el dash a un barrido por el piso! dash con gravedad integrada omaegoto!
             moveDir = transform.forward * dashForce * (dashTimer / dashDuration);
-
             dashTimer -= Time.deltaTime;
 
             if (dashTimer <= 0)
                 isDashing = false;
         }
-
-
-
 
         controller.Move(moveDir * Time.deltaTime);
     }
@@ -102,7 +99,14 @@ public class PlayerController : MonoBehaviour
     {
         isDashing = true;
         dashTimer = dashDuration;
-        
     }
 
+    private void OnShoot()
+    {
+        Debug.Log("DISPARANDO");
+        if (pistol != null)
+        {
+            pistol.Shoot();
+        }
+    }
 }
