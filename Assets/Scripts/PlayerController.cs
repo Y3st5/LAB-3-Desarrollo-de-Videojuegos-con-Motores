@@ -109,4 +109,17 @@ public class PlayerController : MonoBehaviour
             pistol.Shoot();
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        // Visualizar la dirección del movimiento
+        Gizmos.color = Color.green;
+        Vector3 moveDirection = transform.forward * moveInput.y;
+        Gizmos.DrawRay(transform.position, moveDirection);
+
+        // Visualizar la dirección de la velocidad vertical
+        Gizmos.color = Color.blue;
+        Vector3 verticalDirection = Vector3.up * verticalVelocity;
+        Gizmos.DrawRay(transform.position, verticalDirection);
+    }
 }

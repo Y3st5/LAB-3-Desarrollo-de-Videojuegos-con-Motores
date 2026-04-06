@@ -636,12 +636,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760201017}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0592563, y: -0.00057900953, z: -4.0466433}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.0890865, y: 0, z: -12.636164}
   m_LocalScale: {x: 5.099875, y: 5.099875, z: 5.099875}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2042748178}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
@@ -3321,7 +3321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
   EnemyPrefab: {fileID: 8183670487436918366, guid: d6f1bcc8f53d3c841a36dfbc6e65b6cd, type: 3}
-  range: 10
+  range: 40
   spawnInterval: 2
   EnableSpawner: 0
   counter: 0
@@ -3412,7 +3412,7 @@ Transform:
   m_GameObject: {fileID: 1009399579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.68229, y: 0.99942, z: 10.04359}
+  m_LocalPosition: {x: 0.31770992, y: 0.99942017, z: -3.9564104}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4199,6 +4199,7 @@ Transform:
   - {fileID: 550242599}
   - {fileID: 394715424}
   - {fileID: 1854116742}
+  - {fileID: 760201021}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &2131743705
@@ -4522,7 +4523,6 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 5535778340374633921}
-  - {fileID: 760201021}
   - {fileID: 868801955}
   - {fileID: 1947165752}
   - {fileID: 2840760440052257643}

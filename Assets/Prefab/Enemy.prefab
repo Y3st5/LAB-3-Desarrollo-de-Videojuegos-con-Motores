@@ -108,7 +108,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -128,12 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab73ede77273648439839e1ff53caae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  spawner: {fileID: 0}
   speed: 1.5
-  detectionRange: 4
-  Player: {fileID: 3358584337579469934, guid: dd58fcb6d58758a48be08209608c51de, type: 3}
-  playerinRange: 0
-  attackRange: 1.5
+  life: 100
+  rangeVision: 10
+  rangeStop: 1.5
 --- !u!54 &3323469800392305190
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,7 +154,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

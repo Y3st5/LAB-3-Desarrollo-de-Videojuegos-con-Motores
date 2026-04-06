@@ -18,4 +18,19 @@ public class Pistol : MonoBehaviour
             rb.linearVelocity = firePoint.forward * bulletSpeed;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        if (firePoint != null)
+        {
+            // Visualizar el cañón
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(firePoint.position, 0.1f);
+
+            // Visualizar la trayectoria del disparo
+            Gizmos.color = Color.cyan;
+            Vector3 trajectory = firePoint.forward * bulletSpeed;
+            Gizmos.DrawRay(firePoint.position, trajectory);
+        }
+    }
 }
